@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - AI IDS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>🛡️ AI IDS</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/alerts">Alerts</a></li>
+                <li><a href="/statistics" class="active">Statistics</a></li>
+                <li><a href="http://localhost:8000/docs" target="_blank">API Docs</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>📊 System Statistics & Analytics</h1>
+            </header>
+
+            <!-- Stats Overview -->
+            <section class="stats-overview">
+                <div class="stat-box">
+                    <h3>Total Alerts</h3>
+                    <p class="big-number" id="total-alerts">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Malicious Detections</h3>
+                    <p class="big-number" id="malicious-detections">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Normal Traffic</h3>
+                    <p class="big-number" id="normal-traffic">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Today's Alerts</h3>
+                    <p class="big-number" id="today-alerts">0</p>
+                </div>
+            </section>
+
+            <!-- Charts -->
+            <section class="stats-charts">
+                <div class="chart-wrapper">
+                    <h3>Traffic Composition</h3>
+                    <canvas id="compositionChart"></canvas>
+                </div>
+                <div class="chart-wrapper">
+                    <h3>Alert Distribution by Type</h3>
+                    <canvas id="typeChart"></canvas>
+                </div>
+                <div class="chart-wrapper full-width">
+                    <h3>Alerts Over Time</h3>
+                    <canvas id="timelineChart"></canvas>
+                </div>
+                <div class="chart-wrapper full-width">
+                    <h3>Top Source IPs</h3>
+                    <canvas id="topIpsChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Export Section -->
+            <section class="export-section">
+                <h3>Export Data</h3>
+                <button onclick="exportCSV()" class="btn-primary">📥 Export as CSV</button>
+                <button onclick="exportJSON()" class="btn-primary">📥 Export as JSON</button>
+                <button onclick="printStats()" class="btn-secondary">🖨️ Print Report</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/statistics.js') }}"></script>
+</body>
+</html>

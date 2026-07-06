@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - AI IDS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>🛡️ AI IDS</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/alerts" class="active">Alerts</a></li>
+                <li><a href="/statistics">Statistics</a></li>
+                <li><a href="http://localhost:8000/docs" target="_blank">API Docs</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>⚠️ Alert Management</h1>
+            </header>
+
+            <!-- Filters -->
+            <section class="filters">
+                <div class="filter-group">
+                    <label>Time Filter:</label>
+                    <select id="time-filter">
+                        <option value="24">Last 24 Hours</option>
+                        <option value="7">Last 7 Days</option>
+                        <option value="30">Last 30 Days</option>
+                        <option value="all">All Alerts</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Risk Level:</label>
+                    <select id="risk-filter">
+                        <option value="all">All Levels</option>
+                        <option value="critical">Critical (80+)</option>
+                        <option value="high">High (60-79)</option>
+                        <option value="medium">Medium (40-59)</option>
+                        <option value="low">Low (0-39)</option>
+                    </select>
+                </div>
+                <button onclick="applyFilters()" class="btn-primary">Apply Filters</button>
+                <button onclick="clearAllAlerts()" class="btn-danger">Clear All</button>
+            </section>
+
+            <!-- Alerts Table -->
+            <section class="alerts-section">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Time</th>
+                                <th>Source IP</th>
+                                <th>Dest IP</th>
+                                <th>Protocol</th>
+                                <th>Attack Type</th>
+                                <th>Risk Score</th>
+                                <th>Packet Size</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alerts-tbody">
+                            <tr class="loading">
+                                <td colspan="9">Loading alerts...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button onclick="prevPage()" class="btn-secondary">← Previous</button>
+                    <span id="page-info">Page 1</span>
+                    <button onclick="nextPage()" class="btn-secondary">Next →</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/alerts.js') }}"></script>
+</body>
+</html>

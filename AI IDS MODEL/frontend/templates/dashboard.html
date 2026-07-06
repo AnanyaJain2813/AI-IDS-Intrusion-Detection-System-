@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI IDS Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>🛡️ AI IDS</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="active">Dashboard</a></li>
+                <li><a href="/alerts">Alerts</a></li>
+                <li><a href="/statistics">Statistics</a></li>
+                <li><a href="http://localhost:8000/docs" target="_blank">API Docs</a></li>
+            </ul>
+            <div class="status-indicator">
+                <span id="status-dot" class="status-dot"></span>
+                <span id="status-text">Connecting...</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>🔍 Intrusion Detection Dashboard</h1>
+                <div class="header-info">
+                    <span id="time">--:--:--</span>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <section class="dashboard-grid">
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card critical">
+                        <h3>🚨 Malicious Packets</h3>
+                        <p class="stat-value" id="stat-malicious">0</p>
+                        <p class="stat-label">Threats Detected</p>
+                    </div>
+                    <div class="stat-card success">
+                        <h3>✓ Normal Packets</h3>
+                        <p class="stat-value" id="stat-normal">0</p>
+                        <p class="stat-label">Clean Traffic</p>
+                    </div>
+                    <div class="stat-card warning">
+                        <h3>📊 Today's Alerts</h3>
+                        <p class="stat-value" id="stat-today">0</p>
+                        <p class="stat-label">Since 12:00 AM</p>
+                    </div>
+                    <div class="stat-card info">
+                        <h3>📈 Total Alerts</h3>
+                        <p class="stat-value" id="stat-total">0</p>
+                        <p class="stat-label">All Time</p>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Traffic Classification</h3>
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Alert Trend (24h)</h3>
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Alerts -->
+                <div class="recent-alerts">
+                    <h3>⚠️ Recent Alerts</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Source IP</th>
+                                    <th>Dest IP</th>
+                                    <th>Protocol</th>
+                                    <th>Risk Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alerts-tbody">
+                                <tr class="loading">
+                                    <td colspan="6">Loading alerts...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="/alerts" class="btn-link">View All Alerts →</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
