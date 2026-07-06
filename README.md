@@ -1,20 +1,21 @@
 # AI Intrusion Detection System (AI IDS)
 
-An AI-powered Intrusion Detection System (IDS) that captures live network traffic, extracts packet features, and detects malicious activities using Machine Learning. The system provides real-time threat detection, REST APIs, alert management, and a dashboard for monitoring suspicious network events.
+An AI-powered Intrusion Detection System (IDS) that captures live network traffic, extracts network features, and detects malicious activities using Machine Learning. The system provides real-time threat detection, REST APIs, alert management, and a web dashboard for monitoring security events.
 
 ---
 
 ## Features
 
-- Real-time network packet capture using Scapy
+- Real-time packet capture using **Scapy**
 - Machine Learning-based intrusion detection
-- Automated feature extraction from network packets
-- Threat classification (Normal / Malicious)
-- Risk score generation for detected attacks
-- REST API built with FastAPI
-- SQLite database for alert storage
-- Real-time alert management and statistics
-- Interactive API documentation with Swagger UI
+- Live network feature extraction
+- Threat classification with risk scoring
+- FastAPI REST API
+- Interactive web dashboard
+- SQLite database for alert management
+- REST APIs for alerts, statistics, and predictions
+- Modular backend architecture
+- Swagger API documentation
 
 ---
 
@@ -22,94 +23,129 @@ An AI-powered Intrusion Detection System (IDS) that captures live network traffi
 
 ### Languages
 - Python
+- HTML
+- CSS
+- JavaScript
 
-### Frameworks
+### Frameworks & Libraries
 - FastAPI
 - SQLAlchemy
 - Uvicorn
-
-### Machine Learning
-- Scikit-learn
+- Scikit-Learn
 - Pandas
 - NumPy
 - Joblib
 
-### Networking & Security
+### Security & Networking
 - Scapy
-- Network Packet Analysis
 - Intrusion Detection System (IDS)
+- Network Packet Analysis
 
 ### Database
 - SQLite
 
 ---
 
-## Architecture
+# Project Structure
 
-```
-Network Traffic
-        │
-        ▼
- Packet Capture (Scapy)
-        │
-        ▼
- Feature Extraction
-        │
-        ▼
- Machine Learning Model
-        │
-        ▼
-Attack Prediction
-        │
-        ▼
- Alert Storage (SQLite)
-        │
-        ▼
- FastAPI REST API
-        │
-        ▼
- Dashboard / Client
-```
-
----
-
-## Project Structure
-
-```
-AI-IDS/
+```text
+AI-IDS-Intrusion-Detection-System/
 │
-├── backend/
-│   ├── api.py
-│   ├── database.py
-│   ├── model.py
-│   ├── predict.py
-│   └── schemas.py
+├── backend/                       # FastAPI Backend
+│   ├── api.py                     # REST API endpoints
+│   ├── database.py                # Database configuration
+│   ├── model.py                   # SQLAlchemy models
+│   ├── predict.py                 # ML prediction engine
+│   └── schemas.py                 # API schemas
 │
-├── packet_capture/
+├── frontend/                      # Web Dashboard
+│   ├── app.py
+│   ├── static/
+│   │   ├── css/
+│   │   └── js/
+│   │       ├── alerts.js
+│   │       ├── dashboard.js
+│   │       └── statistics.js
+│   │
+│   └── templates/
+│       ├── dashboard.html
+│       ├── alerts.html
+│       ├── statistics.html
+│       └── 404.html
+│
+├── packet_capture/                # Packet Capture Engine
 │   ├── sniffer.py
 │   └── feature_extractor.py
 │
-├── ml/
+├── ml/                            # Machine Learning Models
 │   ├── ids_model.pkl
 │   └── encoder.pkl
 │
-├── frontend/
 ├── database/
+│   └── ids.db
+│
 ├── logs/
+│   └── alerts.log
+│
+├── data/                          # Dataset
+│
 ├── config.py
+├── main.py
 ├── requirements.txt
-└── README.md
+├── start.sh
+├── STARTUP.sh
+├── README.md
+├── QUICKSTART.md
+├── TROUBLESHOOTING.md
+├── ISSUES_FIXED.md
+└── COMPLETION_STATUS.md
 ```
 
 ---
 
-## Installation
+# System Architecture
+
+```text
+                Live Network Traffic
+                        │
+                        ▼
+             Packet Capture (Scapy)
+                        │
+                        ▼
+             Feature Extraction Engine
+                        │
+                        ▼
+           Machine Learning Prediction
+                        │
+         ┌──────────────┴──────────────┐
+         │                             │
+         ▼                             ▼
+   Normal Traffic             Malicious Traffic
+         │                             │
+         ▼                             ▼
+      Ignore                   Store Alert (SQLite)
+                                      │
+                                      ▼
+                             FastAPI Backend API
+                                      │
+                                      ▼
+                          Dashboard & REST Endpoints
+```
+
+---
+
+# Installation
 
 Clone the repository
 
 ```bash
-git clone https://github.com/AnanyaJain2813/AI-IDS.git
-cd AI-IDS
+git clone https://github.com/AnanyaJain2813/AI-IDS-Intrusion-Detection-System.git
+```
+
+Move into the project directory
+
+```bash
+cd AI-IDS-Intrusion-Detection-System
 ```
 
 Install dependencies
@@ -120,9 +156,9 @@ pip install -r requirements.txt
 
 ---
 
-## Running the Project
+# Running the Project
 
-### Start Backend
+### Start Backend API
 
 ```bash
 uvicorn backend.api:app --reload
@@ -132,6 +168,20 @@ API Documentation
 
 ```
 http://localhost:8000/docs
+```
+
+Swagger UI
+
+```
+http://localhost:8000/redoc
+```
+
+---
+
+### Start the Dashboard
+
+```bash
+python frontend/app.py
 ```
 
 ---
@@ -144,16 +194,18 @@ sudo python packet_capture/sniffer.py
 
 ---
 
-## REST API
+# API Endpoints
 
-### Prediction
+## Prediction
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
 | POST | `/api/predict` | Predict malicious traffic |
-| GET | `/api/health` | Health check |
+| GET | `/api/health` | Health status |
 
-### Alerts
+---
+
+## Alerts
 
 | Method | Endpoint |
 |---------|----------|
@@ -161,7 +213,9 @@ sudo python packet_capture/sniffer.py
 | GET | `/api/alerts/latest` |
 | DELETE | `/api/alerts/{id}` |
 
-### Statistics
+---
+
+## Statistics
 
 | Method | Endpoint |
 |---------|----------|
@@ -169,78 +223,62 @@ sudo python packet_capture/sniffer.py
 
 ---
 
-## Workflow
+# Workflow
 
-1. Capture live network packets.
-2. Extract network traffic features.
-3. Send extracted features to the Machine Learning model.
-4. Predict malicious or normal traffic.
-5. Store malicious alerts in SQLite.
-6. Retrieve alerts through FastAPI APIs.
-7. Visualize security events on the dashboard.
-
----
-
-## Database Schema
-
-```
-alerts
-------
-id
-source_ip
-destination_ip
-protocol
-packet_size
-attack_type
-risk_score
-created_at
-```
+1. Capture live network packets using Scapy.
+2. Extract packet features for machine learning.
+3. Predict malicious or normal traffic.
+4. Generate a risk score.
+5. Store detected threats in SQLite.
+6. Expose alerts through FastAPI APIs.
+7. Visualize threats on the dashboard.
 
 ---
 
-## Future Improvements
+# Skills Demonstrated
 
-- SIEM Integration
-- Microsoft Sentinel Integration
-- Threat Intelligence APIs
-- Email Alerting
-- Docker Deployment
-- Cloud Deployment (AWS)
-- Deep Learning IDS
-- Explainable AI (XAI)
-- Real-time Dashboard Analytics
-
----
-
-## Skills Demonstrated
-
-- Machine Learning
-- Network Security
 - Intrusion Detection Systems (IDS)
+- Machine Learning
 - Python
 - FastAPI
 - REST APIs
 - SQLAlchemy
 - SQLite
+- Network Security
+- Packet Analysis
 - Scapy
 - Feature Engineering
-- Cybersecurity
 - Threat Detection
-- Secure Backend Development
+- Backend Development
+- Cybersecurity
+- API Development
 
 ---
 
-## Author
+# Future Improvements
+
+- Microsoft Sentinel Integration
+- SIEM Integration
+- Docker Deployment
+- AWS Deployment
+- Threat Intelligence APIs
+- Email Alerting
+- Explainable AI (XAI)
+- Deep Learning-based IDS
+
+---
+
+# Author
 
 **Ananya Jain**
 
-Cybersecurity Enthusiast
+Cyber Security Enthusiast
 
 - LinkedIn: https://www.linkedin.com/in/ananya-jain-715b9b29a/
 - GitHub: https://github.com/AnanyaJain2813
 
 ---
 
-## License
+# License
 
-This project is licensed under the MIT License.
+Licensed under the MIT License.
