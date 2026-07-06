@@ -93,39 +93,6 @@ CREATE TABLE alerts (
 )
 ```
 
-## ✅ Completed (Phase 1)
-
-- [x] Feature extraction from packets
-- [x] FastAPI REST backend with 7 endpoints
-- [x] Pydantic data validation schemas
-- [x] Database ORM models with timestamps
-- [x] Configuration management
-- [x] Dependencies in requirements.txt
-
-## 📝 Next Steps (Phase 2-4)
-
-**Phase 2: Frontend**
-- [ ] Create Flask web dashboard
-- [ ] Real-time alert visualization
-- [ ] System statistics charts
-
-**Phase 3: Integration & Testing**
-- [ ] Connect sniffer to API
-- [ ] Unit tests
-- [ ] End-to-end testing
-
-**Phase 4: Deployment**
-- [ ] Docker containerization
-- [ ] API documentation
-- [ ] Deployment guide
-
-## 🛠️ Technology Stack
-
-- **Backend**: FastAPI, SQLAlchemy
-- **Database**: SQLite
-- **ML**: scikit-learn, pandas
-- **Networking**: Scapy
-- **Frontend**: Flask + HTML/CSS (Phase 2)
 
 ## 📄 License
 
@@ -133,8 +100,4 @@ MIT License
 
 ## 👤 Author
 
-Developed for AI IDS capstone project.
-
----
-
-**Ready for Phase 2?** Build the web dashboard for real-time threat visualization!
+Developed by ANANYA JAIN.
